@@ -34,7 +34,7 @@ public class Pay {
 			}
 
 			// create a prepared statement
-			String query = " insert into payment(`name`,`accNo`,`ccv`,`date` )" + " values (?, ?, ?, ?, ?)";
+			String query = " insert into payment(`name`,`accNo`,`ccv`,`date` )" + " values (?, ?, ?, ?)";
 			PreparedStatement preparedStmt = con.prepareStatement(query);
 			// binding values
 
@@ -107,13 +107,14 @@ public class Pay {
 				return "Error while connecting to the database for updating.";
 			}
 			// create a prepared statement
-			String query = "UPDATE  payment SET name=?,accNo=?,ccv=?,date=? WHERE name=?";
+			String query = "UPDATE  payment SET accNo=?,ccv=?,date=?  WHERE name=?";
 			PreparedStatement preparedStmt = con.prepareStatement(query);
 			// binding values
-			preparedStmt.setString(1, name);
-			preparedStmt.setString(2, accNo);
-			preparedStmt.setString(3, ccv);
-			preparedStmt.setString(4, date);
+			 
+			preparedStmt.setString(1, accNo);
+			preparedStmt.setString(2, ccv);
+			preparedStmt.setString(3, date);
+			preparedStmt.setString(4, name);
 
 			// execute the statement
 			preparedStmt.execute();
