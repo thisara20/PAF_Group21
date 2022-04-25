@@ -31,13 +31,17 @@ public class PayService {
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)  //request type
 	@Produces(MediaType.TEXT_PLAIN) //respond type
 	
+	//String payID, payDate, String name, String email,String amount, String accNo, String ccv, String expireDate
 	public String insertpay(
+	 @FormParam("payDate") String payDate,
 	 @FormParam("name") String name,
+	 @FormParam("email") String email,
+	 @FormParam("amount") String amount,
 	 @FormParam("accNo") String accNo,
 	 @FormParam("ccv") String ccv,
-	 @FormParam("date") String date)
+	 @FormParam("expireDate") String expireDate)
 	{
-	 String output = payObj.insertPay(name, accNo, ccv, date);
+	 String output = payObj.insertPay( payDate,  name,  email, amount,  accNo,  ccv, expireDate);
 	return output;
 	}
 	
@@ -51,13 +55,18 @@ public class PayService {
 	{
 	//Convert the input string to a JSON object
 	 JsonObject payObject = new JsonParser().parse(PayData).getAsJsonObject();
-	//Read the values from the JSON object and capture the json data set
+	
+	 //Read the values from the JSON object and capture the json data set
+	 String payID = payObject.get("payID").getAsString();
+	 String payDate = payObject.get("payDate").getAsString();
 	 String name = payObject.get("name").getAsString();
+	 String email= payObject.get("email").getAsString();
+	 String amount = payObject.get("amount").getAsString();
 	 String accNo = payObject.get("accNo").getAsString();
 	 String ccv = payObject.get("ccv").getAsString();
-	 String date = payObject.get("date").getAsString();
+	 String expireDate = payObject.get("expireDate").getAsString();
 	  
-	 String output = payObj.updatePay(name, accNo, ccv, date );
+	 String output = payObj.updatePay(payID,payDate,name,email,amount, accNo,ccv, expireDate );
 	return output;
 	}
 	
@@ -71,8 +80,8 @@ public class PayService {
 	 Document doc = Jsoup.parse(payData, "", Parser.xmlParser());
 
 	//Read the value from the element <name>
-	 String name = doc.select("name").text();
-	 String output = payObj.deletePay(name);
+	 String payID = doc.select("payID").text();
+	 String output = payObj.deletePay(payID);
 	return output;
 	}
 
