@@ -70,19 +70,6 @@ public class PayService {
 	return output;
 	}
 	
-	@DELETE
-	@Path("/")
-	@Consumes(MediaType.APPLICATION_XML)
-	@Produces(MediaType.TEXT_PLAIN)
-	public String deletePay(String payData)
-	{
-	//Convert the input string to an XML document
-	 Document doc = Jsoup.parse(payData, "", Parser.xmlParser());
-
-	//Read the value from the element <name>
-	 String payID = doc.select("payID").text();
-	 String output = payObj.deletePay(payID);
-	return output;
-	}
+	 
 
 }

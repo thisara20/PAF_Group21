@@ -147,29 +147,5 @@ public class Pay {
 		return output;
 	}
 
-	// delete
-	public String deletePay(String payID) {
-		String output = "";
-		try {
-			Connection con = connect();
-			if (con == null) {
-				return "Error while connecting to the database for deleting.";
-			}
-			// create a prepared statement
-			String query = "delete from payment where payID=?";
-			PreparedStatement preparedStmt = con.prepareStatement(query);
-			// binding values
-			preparedStmt.setInt(1,Integer.parseInt(payID));
-
-			// execute the statement
-			preparedStmt.execute();
-			con.close();
-			output = "Deleted successfully";
-		} catch (Exception e) {
-			output = "Error while deleting the item.";
-			System.err.println(e.getMessage());
-		}
-		return output;
-	}
-
+	 
 }
