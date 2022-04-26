@@ -1,0 +1,5 @@
+rest\api\MyResource.class
+rest\api\Bill_tableResource.class
+Controllers\Bill_tableController.class
+DataBaseConnector\Connector.class
+Models\Bill_table.class
