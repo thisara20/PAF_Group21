@@ -26,12 +26,13 @@ public class PayService {
 		return payObj.readPay();
 	}
 	
+	//insert payment
 	@POST
 	@Path("/")
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)  //request type
 	@Produces(MediaType.TEXT_PLAIN) //respond type
 	
-	//String payID, payDate, String name, String email,String amount, String accNo, String ccv, String expireDate
+	 
 	public String insertpay(
 	 @FormParam("payDate") String payDate,
 	 @FormParam("name") String name,
