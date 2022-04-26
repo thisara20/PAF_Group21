@@ -68,7 +68,7 @@ public class Pay {
 		try {
 			Connection con = connect();
 			if (con == null) {
-				return "Error while connecting to the database for reading.";
+				return "Error while connecting to the database for reading!";
 			}
 			// Prepare the html table to be displayed
 			//String payID, payDate, String name, String email,String amount, String accNo, String ccv, String expireDate
